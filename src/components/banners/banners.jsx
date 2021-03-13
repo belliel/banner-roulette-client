@@ -154,6 +154,7 @@ const save = async (banner, setBanner, banners, setBanners, setWindowState) => {
 
         setBanner(getZeroValueBanner())
         setWindowState("banners")
+        getBannersByPage(1, setBanners)
     } else {
         alert(response.status)
     }
@@ -209,13 +210,15 @@ const Banners = () => {
                                     </Box>
                                     <Box my={4}>
                                         <Button marginRight={2} colorScheme={"blue"} value={el.id} onClick={e => {
-                                            setWindowState("editing")
+                                            setWindowState("edit")
                                             const b = banners.find(b => b.id === e.target.value)
                                             b.show_start_date = formatDate(new Date(b.show_start_date))
                                             b.show_end_date = formatDate(new Date(b.show_end_date))
                                             setBanner(b)
                                         }}>Edit</Button>
                                         <Button marginRight={2} colorScheme={"red"} value={el.id} onClick={e => {
+                                            const b = banners.filter(b => b.id !== e.target.value)
+                                            setBanners(b)
                                             requests.Delete(`v1/banners/${el.id}`)
                                         }}>Delete</Button>
                                     </Box>
@@ -271,7 +274,7 @@ const Banners = () => {
                                 </FormControl>
                                 <FormControl mt={2}>
                                     <FormLabel>Show count</FormLabel>
-                                    <Input type="text" disabled defaultValue={banner.show_count || 0} />
+                                    <Input type="text" defaultValue={banner.show_count || 0} />
                                 </FormControl>
                                 <FormControl mt={2}>
                                     <FormLabel>Visible</FormLabel>
