@@ -204,7 +204,7 @@ const Banners = () => {
                                         <Box>
                                             Alt: {el.alt}
                                         </Box>
-                                        <Box>
+                                        <Box color={el.show_count_cap === 0 ? "red" : el.show_count / el.show_count_cap > 0.75 ? "red" : el.show_count / el.show_count_cap > 0.5 ? "gray" : "black"}>
                                             Show count: {el.show_count} / {el.show_count_cap}
                                         </Box>
                                     </Box>
