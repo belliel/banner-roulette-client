@@ -5,11 +5,11 @@ import Home from "./components/home/home";
 
 const App = () => {
   return (
+    
     <Router>
-
       <Switch>
         <Route path="/" exact component={Home}/>
-        <Route path="/banners" exact component={Banners}/>
+        <Route path="/banners" component={Banners}/>
       </Switch>
     </Router>
   );

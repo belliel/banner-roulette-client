@@ -17,27 +17,27 @@ class Fetcher {
     Post(uri, body, headers) {
         return fetch(
             `${this.baseurl}/${uri}`, 
-            { body, headers }
+            { method: "POST", body, headers }
         )
     }
 
     Put(uri, body, headers) {
         return fetch(
             `${this.baseurl}/${uri}`, 
-            { body, headers }
+            { method: "PUT", body, headers }
         )
     }
 
     Delete(uri, headers) {
         return fetch(
             `${this.baseurl}/${uri}`, 
-            { headers }
+            { method: "DELETE", headers }
         )
     }
 }
 
-const baseUrl = "http://localhost:3000"
+const baseUrl = "http://localhost:5000"
 
-export default Fetcher(baseUrl)
+export default new Fetcher(baseUrl)
 
 
