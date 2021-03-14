@@ -189,9 +189,9 @@ const Banners = () => {
                     ? <Flex width="full" flexDirection={"column"}>
                         {
                             banners.map(el => <Box key={el.id} display={"flex"} flexDirection={"row"} borderRadius={"base"} width="full" my={1} backgroundColor={el.visible ? `green.100` : `red.100`}>
-                                <Box marginRight={10} boxSize={"fit-content"}>
+                                <Box marginRight={10} boxSize={"sm"}>
                                     {
-                                        el.image_url?.match(regexpURL)
+                                        !el.image_uri.startsWith("assets")
                                             ? <Image src={`${el.image_uri}`} alt={el.alt} />
                                             : <Image src={`${requests.baseurl}/${el.image_uri}`} alt={el.alt} />
                                     }
