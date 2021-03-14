@@ -310,9 +310,9 @@ const Banners = () => {
                                     <Button colorScheme={"facebook"} width="full" onClick={e => inputRef.current.click()}>Upload</Button>
                                 </FormControl>
                                 {
-                                    banner.image_uri
-                                        ? <Image marginTop={5} src={`${requests.baseurl}/${banner.image_uri}`} alt={banner.alt}/>
-                                        : null
+                                    !banner.image_uri.startsWith("assets")
+                                        ? <Image src={`${banner.image_uri}`} alt={banner.alt} />
+                                        : <Image src={`${requests.baseurl}/${banner.image_uri}`} alt={banner.alt} />
                                 }
                             </Box>
                         </Box>

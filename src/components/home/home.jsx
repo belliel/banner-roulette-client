@@ -10,6 +10,7 @@ const Home = () => {
     const [banner, setBanner] = useState({})
     const [page, setPage] = useState(1)
     
+
     useEffect(() => {
         setLoading(true)
         requests.Get(`v1/banners/random?hour=${new Date().getHours()}`)
@@ -43,10 +44,10 @@ const Home = () => {
             : banner.id
                 ? (<Box display={"flex"} flexDirection={"column"} alignItems={"center"}> 
                         <Heading>{banner.name}</Heading>
-                        <Box>
+                        <Box boxSize="sm">
                             <a href={banner.uri} target={"_blank"} rel="noreferrer">
-                                {
-                                    banner.image_url?.match(regexpURL)
+                            {
+                                    !banner.image_uri.startsWith("assets")
                                         ? <Image src={`${banner.image_uri}`} alt={banner.alt} />
                                         : <Image src={`${requests.baseurl}/${banner.image_uri}`} alt={banner.alt} />
                                 }
